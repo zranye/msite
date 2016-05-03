@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.tomtop.msite.mapper.pgsql.member.AccountBaseMapper">
+	<resultMap id="BaseResultMap" type="com.tomtop.msite.entitys.pgsql.member.AccountBase">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="account_name" property="accountName" jdbcType="VARCHAR" />
+		<result column="member_email" property="memberEmail" jdbcType="VARCHAR" />
+		<result column="member_id" property="memberId" jdbcType="INTEGER" />
+		<result column="cellphone" property="cellphone" jdbcType="VARCHAR" />
+		<result column="password" property="password" jdbcType="VARCHAR" />
+		<result column="origin" property="origin" jdbcType="INTEGER" />
+		<result column="create_date" property="createDate" jdbcType="TIMESTAMP" />
+		<result column="create_by" property="createBy" jdbcType="VARCHAR" />
+		<result column="update_date" property="updateDate" jdbcType="TIMESTAMP" />
+		<result column="update_by" property="updateBy" jdbcType="VARCHAR" />
+		<result column="activated" property="activated" jdbcType="BOOLEAN" /> 
+	</resultMap>
+	<sql id="Base_Column_List">
+		id,
+		account_name,
+		member_email,
+		member_id,
+		cellphone,
+		password,
+		origin,
+		create_date,
+		create_by,
+		update_date,
+		update_by,
+		activated
+	</sql>
+	<insert id="insert" parameterType="com.tomtop.msite.entitys.pgsql.member.AccountBase">
+		INSERT INTO t_account_base (
+			account_name,
+			member_email,
+			member_id,
+			cellphone,
+			PASSWORD,
+			origin,
+			create_date,
+			create_by,
+			update_date,
+			update_by,
+			activated
+		)
+		VALUES
+		(
+			#{ item.accountName,jdbcType = VARCHAR }, 
+			#{ item.memberEmail,jdbcType = VARCHAR }, 
+			#{ item.memberId,jdbcType = INTEGER }, 
+			#{ item.cellphone,jdbcType = VARCHAR }, 
+			#{ item.password,jdbcType = VARCHAR }, 
+			#{ item.origin,jdbcType = INTEGER }, 
+			#{ item.createDate,jdbcType = TIMESTAMP }, 
+			#{ item.createBy,jdbcType = VARCHAR }, 
+			#{ item.updateDate,jdbcType = TIMESTAMP },
+			#{ item.updateBy,jdbcType = VARCHAR },
+			#{ item.activated,jdbcType = BOOLEAN }
+		)
+	</insert>
+	<update id="update" parameterType="com.tomtop.msite.entitys.pgsql.member.AccountBase">
+		update t_account_base
+		<set>
+			<if test="accountName != null">
+				account_name = #{accountName,jdbcType=INTEGER},
+			</if>
+			<if test="memberEmail != null">
+				member_email = #{memberEmail,jdbcType=VARCHAR},
+			</if>
+			<if test="memberId != null">
+				member_id = #{memberId,jdbcType=INTEGER},
+			</if>
+			<if test="cellphone != null">
+				cellphone = #{cellphone,jdbcType=VARCHAR},
+			</if>
+			<if test="password != null">
+				password = #{password,jdbcType=VARCHAR},
+			</if>
+			<if test="origin != null">
+				origin = #{origin,jdbcType=INTEGER},
+			</if>
+			<if test="createDate != null">
+				create_date = #{createDate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="createBy != null">
+				create_by = #{createBy,jdbcType=VARCHAR},
+			</if>
+			<if test="updateDate != null">
+				update_date = #{updateDate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="updateBy != null">
+				update_by = #{updateBy,jdbcType=VARCHAR},
+			</if>
+			<if test="activated != null">
+				activated = #{activated,jdbcType=BOOLEAN},
+			</if>
+			
+		</set>
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	
+	<select id="query" parameterType="java.util.List" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from t_account_base
+		<if test="paramDto != null">
+			<where>
+				1 = 1
+				<if test="paramDto.acccountId != null">
+					and id = #{paramDto.acccountId}
+				</if>
+				<if test="paramDto.accountName != null">
+					and account_name = #{paramDto.accountName}  
+				</if>
+				<if test="paramDto.memberEmail != null">
+					and member_email = #{paramDto.memberEmail}
+				</if>
+				<if test="paramDto.memberId != null">
+					and member_id = #{paramDto.memberId}
+				</if>
+				<if test="paramDto.cellphone != null">
+					and cellphone = #{paramDto.cellphone}
+				</if>
+				<if test="paramDto.origin != null">
+					and origin = #{paramDto.origin}
+				</if>
+				<if test="paramDto.activated != null">
+					and activated = #{paramDto.activated}
+				</if>
+				<if test="paramDto.createDateRangeBegin != null and paramDto.createDateRangeEnd != null">
+					and create_date between #{paramDto.createDateRangeBegin} and #{paramDto.createDateRangeEnd}
+				</if>
+				
+			</where>
+		    order by create_date desc
+			limit #{2} offset (#{1}-1)*#{2}
+		</if>
+	</select>
+	
+	<select id="queryWithForm" parameterType="java.util.List" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from t_account_base
+		<if test="paramDto != null">
+			<where>
+				1 = 1
+				<if test="paramDto.caccount != null">
+					and account_name = #{paramDto.caccount}  
+				</if>
+				<if test="paramDto.email != null">
+					and member_email = #{paramDto.email}
+				</if>
+				
+			</where>
+		    order by create_date desc
+			limit #{2} offset (#{1}-1)*#{2}
+		</if>
+	</select>
+	
+	<select id="queryWithFormTotal" parameterType="java.util.List" resultType="Integer">
+		select
+			count(1)
+		from t_account_base
+		<if test="paramDto != null">
+			<where>
+				1 = 1
+				<if test="paramDto.caccount != null">
+					and account_name = #{paramDto.caccount}  
+				</if>
+				<if test="paramDto.email != null">
+					and member_email = #{paramDto.email}
+				</if>
+				
+			</where>
+		</if>
+	</select>
+	
+	
+	
+	<select id="total" parameterType="java.util.List" resultType="Integer">
+		select
+			count(1)
+		from t_account_base
+		<if test="paramDto != null">
+			<where>
+				1 = 1
+				<if test="paramDto.acccountId != null">
+					and id = #{paramDto.acccountId}
+				</if>
+				<if test="paramDto.accountName != null">
+					and account_name = #{paramDto.accountName}  
+				</if>
+				<if test="paramDto.memberEmail != null">
+					and member_email = #{paramDto.memberEmail}
+				</if>
+				<if test="paramDto.memberId != null">
+					and member_id = #{paramDto.memberId}
+				</if>
+				<if test="paramDto.cellphone != null">
+					and cellphone = #{paramDto.cellphone}
+				</if>
+				<if test="paramDto.origin != null">
+					and origin = #{paramDto.origin}
+				</if>
+				<if test="paramDto.activated != null">
+					and activated = #{paramDto.activated}
+				</if>
+				
+			</where>
+		</if>
+	</select>
+	
+	<delete id="delete" parameterType="com.tomtop.msite.entitys.pgsql.member.AccountBase">
+		delete from
+		t_account_base
+		where id = #{id,jdbcType=INTEGER}
+	</delete>
+	
+	<select id="getUserNames" resultMap="BaseResultMap"
+		parameterType="java.util.List">
+		select * from t_account_base where member_email in
+		<foreach item="item" index="index" collection="list" open="("
+			separator="," close=")">
+			#{item}
+		</foreach>
+	</select>
+	
+	<select id="get" resultMap="BaseResultMap" parameterType="Integer">
+		select * from t_account_base where id= #{id,jdbcType=INTEGER}
+	</select>
+</mapper>

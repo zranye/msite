@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.tomtop.msite.mapper.pgsql.product.ProductBaseMapper">
+	<resultMap id="BaseResultMap" type="com.tomtop.msite.entitys.pgsql.product.ProductBase">
+		<id column="iid" property="iid" jdbcType="INTEGER" />
+		<result column="clistingid" property="clistingid" jdbcType="VARCHAR" />
+		<result column="iwebsiteid" property="iwebsiteid" jdbcType="INTEGER" />
+		<result column="csku" property="csku" jdbcType="VARCHAR" />
+		<result column="istatus" property="istatus" jdbcType="INTEGER" />
+		<result column="dnewformdate" property="dnewformdate" jdbcType="TIMESTAMP" />
+		<result column="dnewtodate" property="dnewtodate" jdbcType="TIMESTAMP" />
+		<result column="bspecial" property="bspecial" jdbcType="BIT" />
+		<result column="cvideoaddress" property="cvideoaddress"
+			jdbcType="VARCHAR" />
+		<result column="iqty" property="iqty" jdbcType="INTEGER" />
+		<result column="fprice" property="fprice" jdbcType="DOUBLE" />
+		<result column="fcostprice" property="fcostprice" jdbcType="DOUBLE" />
+		<result column="ffreight" property="ffreight" jdbcType="DOUBLE" />
+		<result column="fweight" property="fweight" jdbcType="DOUBLE" />
+		<result column="local_ref_price" property="localRefPrice" jdbcType="DOUBLE" />
+		<result column="bmultiattribute" property="bmultiattribute"
+			jdbcType="BIT" />
+		<result column="cparentsku" property="cparentsku" jdbcType="VARCHAR" />
+		<result column="bvisible" property="bvisible" jdbcType="BIT" />
+		<result column="bpulish" property="bpulish" jdbcType="BIT" />
+		<result column="ccreateuser" property="ccreateuser" jdbcType="VARCHAR" />
+		<result column="dcreatedate" property="dcreatedate" jdbcType="TIMESTAMP" />
+		<result column="bmain" property="bmain" jdbcType="BIT" />
+		<result column="bactivity" property="bactivity" jdbcType="BIT" />
+		<result column="product_type" property="productType" jdbcType="VARCHAR" />
+		<result column="saleprice"         property="saleprice" jdbcType="DOUBLE" />          
+		<result column="tariff"            property="tariff" jdbcType="DOUBLE" />             
+		<result column="carriage"          property="carriage" jdbcType="DOUBLE" />           
+		<result column="distprice"         property="distprice" jdbcType="DOUBLE" />          
+		<result column="dis_profit_rate"   property="disProfitRate" jdbcType="DOUBLE" />      
+		<result column="re_profit_rate"    property="reProfitRate" jdbcType="DOUBLE" />       
+		<result column="dis_profit"        property="disProfit" jdbcType="DOUBLE" />          
+		<result column="re_profit"         property="reProfit" jdbcType="DOUBLE" />           
+		<result column="dis_vat"           property="disVat" jdbcType="DOUBLE" />             
+		<result column="re_vat"            property="reVat" jdbcType="DOUBLE" />              
+		<result column="dis_stock_fee"     property="disStockFee" jdbcType="DOUBLE" />        
+		<result column="re_stock_fee"      property="reStockFee" jdbcType="DOUBLE" />         
+		<result column="dis_shipping_type" property="disShippingType" jdbcType="VARCHAR" />   
+		<result column="re_shipping_type"  property="reShippingType"  jdbcType="VARCHAR" />   
+		<result column="dis_other_cost"    property="disOtherCost"    jdbcType="DOUBLE" />    
+		<result column="re_other_cost"     property="reOtherCost"     jdbcType="DOUBLE" />    
+		<result column="dis_total_cost"    property="disTotalCost"    jdbcType="DOUBLE" />    
+		<result column="re_total_cost"     property="reTotalCost"     jdbcType="DOUBLE" />    
+		<result column="dis_transfer_fee"  property="disTransferFee"  jdbcType="DOUBLE" />    
+		<result column="re_transfer_fee"   property="reTransferFee"   jdbcType="DOUBLE" />    
+		<result column="batch_number"      property="batchNumber"      jdbcType="INTEGER" />  
+		<result column="postal_rate"       property="postalRate"       jdbcType="DOUBLE" />
+		<result column="platform_fee"       property="tradeFee"       jdbcType="DOUBLE" />
+		<result column="postal_fee"       property="postalFee"       jdbcType="DOUBLE" />
+		<result column="import_tar"       property="importTar"       jdbcType="DOUBLE" />
+		<result column="gst"       property="gst"       jdbcType="DOUBLE" />
+		<result column="vat"       property="totalvat"       jdbcType="DOUBLE" />
+		<result column="pack_qty"       property="packQty"       jdbcType="INTEGER" />
+		<result column="product_enterprise"       property="productEnterprise"       jdbcType="VARCHAR" />
+		<result column="component_content"       property="componentContent"       jdbcType="VARCHAR" />
+		<result column="expiration_days"       property="expirationDays"       jdbcType="INTEGER" />
+		<result column="package_type"       property="packageType"       jdbcType="VARCHAR" />
+		<result column="origin_country"       property="originCountry"       jdbcType="VARCHAR" />
+		<result column="plug_type"       property="plugType"       jdbcType="VARCHAR" />
+		<result column="inter_bar_code"       property="interBarCode"       jdbcType="VARCHAR" />
+		<result column="brand"       property="skuBrand"       jdbcType="VARCHAR" />
+		<result column="list_fee"     property="listFee"     jdbcType="DOUBLE" />    
+		<result column="pay_fee"  property="payFee"  jdbcType="DOUBLE" />    
+		<result column="insurance"   property="insurance"   jdbcType="DOUBLE" />
+		<result column="dis_list_fee"    property="dislistFee"    jdbcType="DOUBLE" />    
+		<result column="dis_trade_fee"     property="distradeFee"     jdbcType="DOUBLE" />    
+		<result column="dis_pay_fee"    property="dispayFee"    jdbcType="DOUBLE" />    
+		<result column="dis_postal_fee"     property="dispostalFee"     jdbcType="DOUBLE" />    
+		<result column="dis_import_tar"  property="disimportTar"  jdbcType="DOUBLE" />    
+		<result column="dis_gst"   property="disgst"   jdbcType="DOUBLE" />
+		<result column="dis_insurance"  property="disinsurance"  jdbcType="DOUBLE" />    
+		<result column="dis_total_vat"   property="distotalvat"   jdbcType="DOUBLE" />  
+	</resultMap>
+
+	<sql id="Base_Column_List">
+		iid, clistingid, iwebsiteid, csku, istatus, dnewformdate,
+		dnewtodate, bspecial, cvideoaddress,
+		iqty, fprice, fcostprice, fweight,
+		bmultiattribute, cparentsku,ffreight,
+		bvisible, bpulish, ccreateuser,
+		dcreatedate,bmain,bactivity,product_type
+	</sql>
+
+	<select id="getProductBaseByListingId" parameterType="Integer" resultMap="BaseResultMap">
+		select  * from t_product_base where iid =#{0}
+	</select>
+
+</mapper>
